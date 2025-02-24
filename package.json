@@ -12,7 +12,9 @@
     "convex": "^1.19.2",
     "next": "15.1.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
+    "replicate": "^1.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
