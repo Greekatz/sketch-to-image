@@ -2,8 +2,8 @@ import { Brain, Cloud, Shield, Zap } from "lucide-react"
 
 const features = [
   {
-    name: "AI-Powered Analytics",
-    description: "Harness the power of machine learning to derive actionable insights from your data.",
+    name: "AI Sketch Recognition",
+    description: "Our AI understands and enhances your sketches with precision.",
     icon: Brain,
   },
   {
@@ -12,13 +12,13 @@ const features = [
     icon: Cloud,
   },
   {
-    name: "Enterprise-Grade Security",
-    description: "State-of-the-art security measures to protect your most valuable assets.",
+    name: "Secure and Private",
+    description: "Your sketches remain yours—100% secure and private.",
     icon: Shield,
   },
   {
-    name: "High-Performance Systems",
-    description: "Optimized for speed and efficiency, our solutions deliver unparalleled performance.",
+    name: "Lightning-Fast Rendering",
+    description: "Transform your sketches into high-quality images in seconds.",
     icon: Zap,
   },
 ]
@@ -27,9 +27,9 @@ export default function Features() {
   return (
     <section className="container space-y-16 py-24 md:py-32">
       <div className="mx-auto max-w-[58rem] text-center">
-        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">Cutting-Edge Solutions</h2>
+        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">AI-Powered Sketch Transformation</h2>
         <p className="mt-4 text-muted-foreground sm:text-lg">
-          Discover how Amane Soft can transform your business with our innovative technologies.
+          Experience the future of creativity with AI-driven sketch-to-image technology.
         </p>
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">

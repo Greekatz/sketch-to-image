@@ -6,8 +6,8 @@ export default function Footer() {
     <footer className="border-t">
       <div className="container flex flex-col gap-8 py-8 md:flex-row md:py-12">
         <div className="flex-1 space-y-4">
-          <h2 className="font-bold">Amane Soft</h2>
-          <p className="text-sm text-muted-foreground">Pioneering software solutions for the digital age.</p>
+          <h2 className="font-bold">Sketchy</h2>
+          <p className="text-sm text-muted-foreground">Transforming sketches into stunning images with AI.</p>
         </div>
         <div className="grid flex-1 grid-cols-2 gap-12 sm:grid-cols-3">
           <div className="space-y-4">
