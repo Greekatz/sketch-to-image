@@ -14,7 +14,6 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as sketches from "../sketches.js";
-import type * as generate from "../generate.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.

@@ -14,6 +14,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "convex": "^1.19.3",
+    "flatted": "^3.3.3",
     "lucide-react": "^0.476.0",
     "next": "^15.2.0",
     "react": "^19.0.0",
