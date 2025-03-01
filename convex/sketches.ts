@@ -68,7 +68,7 @@ export const generate = internalAction({
           scale: 7,
           prompt,
           image_resolution: "512",
-          n_prompt: "longbody, lowres, bad anatomy, cropped, worst quality",
+          n_prompt: "cute"
         },
       });
 
