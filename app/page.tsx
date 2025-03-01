@@ -1,27 +1,61 @@
-import Navbar from "@/components/navbar"
-import Hero from "@/components/hero"
-import Features from "@/components/features"
-import CTA from "@/components/cta"
-import Footer from "@/components/footer"
+"use client";
+import { useForm } from "react-hook-form";
+import { ReactSketchCanvas, ReactSketchCanvasRef } from "react-sketch-canvas";
+import { useMutation, useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { useRef } from "react";
 
 export default function Home() {
+  const saveSketchMutation = useMutation(api.sketches.saveSketch);
+  const sketchesQuery = useQuery(api.sketches.getSketches);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{
+    prompt: string;
+  }>();
+
+  const canvasRef = useRef<ReactSketchCanvasRef>(null);
+
   return (
-    <div className="relative min-h-screen">
-      {/* Background gradients */}
-      <div className="pointer-events-none fixed inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
-        <div className="absolute right-0 top-0 h-[500px] w-[500px] bg-blue-500/10 blur-[100px]" />
-        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] bg-purple-500/10 blur-[100px]" />
-      </div>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <form
+        className="flex flex-col gap-2"
+        onSubmit={handleSubmit(async (formData) => {
+          try {
+            if(!canvasRef.current) return;
+            const image = await canvasRef.current.exportImage("jpeg");
+            await saveSketchMutation({ ...formData, image });
+          } catch (error) {
+            console.error("Error submitting form:", error);
+          }
+        })}
+      >
+        {/* Input field for text prompt */}
+        <input
+          className="text-black border p-2 rounded"
+          {...register("prompt", { required: true })}
+          placeholder="Enter prompt..."
+        />
+        {errors.prompt && <span className="text-red-500">This field is required</span>}
 
-      <div className="relative z-10">
-        <Navbar />
-        <Hero />
-        <Features />
-        <CTA />
-        <Footer />
-      </div>
-    </div>
-  )
+        {/* Sketch Canvas */}
+        <ReactSketchCanvas
+          ref={canvasRef}
+          style={{ width: 256, height: 256, border: "1px solid #ccc", borderRadius: "8px" }}
+          strokeWidth={4}
+          strokeColor="black"
+        />
+
+        {/* Submit Button is now BELOW the Canvas */}
+        <input
+          type="submit"
+          className="mt-4 p-2 bg-blue-500 text-white rounded cursor-pointer hover:bg-blue-600 transition"
+          value="Submit"
+        />
+      </form>
+    </main>
+  );
 }
-
