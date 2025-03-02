@@ -8,7 +8,7 @@ export default function CTA() {
           Bring Your Sketches to Life Instantly
         </h2>
         <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-        urn your rough ideas into stunning visuals with AI-powered sketch transformation.
+        Turn your rough ideas into stunning visuals with AI-powered sketch transformation.
         </p>
         <Button size="lg" className="mt-4">
           Try Sketchy for Free
