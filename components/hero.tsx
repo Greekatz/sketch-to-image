@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { SignInButton } from "@clerk/nextjs"
 import { ArrowRight } from "lucide-react"
 
 export default function Hero() {
@@ -15,10 +16,12 @@ export default function Hero() {
         </p>
       </div>
       <div className="flex gap-4">
-        <Button size="lg">
-            Get Started
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
+        <SignInButton>
+          <Button size="lg">
+              Get Started
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </SignInButton>
         <Button variant="outline" size="lg">
           Try for Free
         </Button>

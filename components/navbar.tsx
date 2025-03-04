@@ -1,6 +1,7 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Github } from "lucide-react"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Github } from "lucide-react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   return (
@@ -27,10 +28,23 @@ export default function Navbar() {
               <span className="sr-only">GitHub</span>
             </Button>
           </Link>
-          <Button size="sm">Get Started</Button>
+
+          {/* Show Get Started only when signed out */}
+          <SignedOut>
+            <SignInButton>
+              <Button size="sm">Get Started</Button>
+            </SignInButton>
+          </SignedOut>
+
+          {/* Show User Profile button when signed in */}
+          <SignedIn>
+            <Link href="/sketches">
+              <Button size="sm">Go to Sketches</Button>
+            </Link>
+            <UserButton />
+          </SignedIn>
         </div>
       </div>
     </header>
-  )
+  );
 }
-
