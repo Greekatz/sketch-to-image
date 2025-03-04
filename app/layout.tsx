@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Sketchy",
-  description: "To be updated",
+  description: "Sketchy is a platform to transform raw ideas to creative solutions.",
 };
 
 export default function RootLayout({
@@ -25,22 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
-        <ClerkProvider>
+        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
           <ConvexClientProvider>
-            {/* Header with Clerk Authentication */}
-            <header className="flex justify-between items-center p-4 border-b">
-              <h1 className="text-xl font-bold">Sketchy</h1>
-              <nav className="flex items-center gap-4">
-                <SignedOut>
-                  <SignInButton />
-                  <SignUpButton />
-                </SignedOut>
-                <SignedIn>
-                  <UserButton />
-                </SignedIn>
-              </nav>
-            </header>
-
             {/* Mouse Effect */}
             <MouseMoveEffect />
 
