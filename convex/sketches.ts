@@ -1,33 +1,53 @@
 
 import { internalAction ,internalMutation, mutation, query } from "./_generated/server";
 import { internal } from "./_generated/api";
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 import Replicate from "replicate";
 
 export const saveSketch = mutation({
   args: { prompt: v.string(), image: v.string() },
   handler: async (ctx, { prompt, image }) => {
-    const sketch = await ctx.db.insert("sketches", {
+    const userId = (await ctx.auth.getUserIdentity())?.tokenIdentifier
+
+    if (!userId) {
+      throw new ConvexError("User not authenticated.");
+    }
+    const sketchId = await ctx.db.insert("sketches", {
+      tokenIdentifier: userId,
       prompt,
     });
 
     await ctx.scheduler.runAfter(0, internal.sketches.generate, {
-      sketchId: sketch,
+      sketchId,
       prompt,
       image,
     });
 
-    return sketch;
+    return sketchId;
   },
 });
 
 export const getSketch = query({
   args: { sketchId: v.id("sketches") },
-  handler: (ctx, { sketchId }) => {
-    if (!sketchId) return null;
-    return ctx.db.get(sketchId);
+  handler: async (ctx, { sketchId }) => {
+    const userId = (await ctx.auth.getUserIdentity())?.tokenIdentifier;
+    
+    if (!userId) {
+      throw new Error("User not authenticated.");
+    }
+
+    // Fetch sketch by ID
+    const sketch = await ctx.db.get(sketchId);
+
+    // Ensure the sketch belongs to the authenticated user
+    if (!sketch || sketch.tokenIdentifier !== userId) {
+      throw new Error("Unauthorized access to sketch.");
+    }
+
+    return sketch;
   },
 });
+
 
 export const updateSketchResult = internalMutation({
   args: { sketchId: v.id("sketches"), result: v.string() },
@@ -40,8 +60,16 @@ export const updateSketchResult = internalMutation({
 
 export const getSketches = query({
   handler: async (ctx) => {
-    const sketches = await ctx.db.query("sketches").collect();
-    return sketches;
+    const userId = (await ctx.auth.getUserIdentity())?.tokenIdentifier;
+
+    if (!userId) {
+      throw new ConvexError("User not authenticated.");
+    }
+
+    return await ctx.db
+      .query("sketches")
+      .withIndex("by_tokenIdentifier", (q) => q.eq("tokenIdentifier", userId))
+      .collect();
   },
 });
 

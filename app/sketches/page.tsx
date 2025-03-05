@@ -1,8 +1,6 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { api } from "@/convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
 import { useForm } from "react-hook-form";
@@ -13,15 +11,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
 export default function SketchesPage() {
-  const { isSignedIn } = useUser();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isSignedIn) {
-      router.push("/auth/sign-in"); // Redirect to Sign-In if not authenticated
-    }
-  }, [isSignedIn, router]);
-
   const saveSketchMutation = useMutation(api.sketches.saveSketch);
   const sketchesQuery = useQuery(api.sketches.getSketches);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -62,10 +51,6 @@ export default function SketchesPage() {
       setIsSubmitting(false);
     }
   };
-
-  if (!isSignedIn) {
-    return <div className="flex justify-center items-center min-h-screen">Redirecting...</div>;
-  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between pt-8">
