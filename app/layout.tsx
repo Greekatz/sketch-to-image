@@ -25,8 +25,6 @@ export default function RootLayout({
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
           <ConvexClientProvider>
-            {/* Mouse Effect */}
-
 
             {/* Main Content */}
             <main>{children}</main>
