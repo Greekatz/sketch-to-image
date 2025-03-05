@@ -9,6 +9,7 @@ import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Header } from "@/components/layout/header";
 
 export default function SketchesPage() {
   const saveSketchMutation = useMutation(api.sketches.saveSketch);
