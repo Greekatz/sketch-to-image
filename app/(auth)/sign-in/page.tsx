@@ -11,7 +11,7 @@ export default function SignInPage() {
 
   useEffect(() => {
     if (isSignedIn) {
-      router.push("/sketches"); // Redirect to Sketches page after sign-in
+      router.push("/sketches"); 
     }
   }, [isSignedIn, router]);
 

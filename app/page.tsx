@@ -1,27 +1,30 @@
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
+import { HeroSection } from "@/components/sections/hero-section"
+import { HowItWorksSection } from "@/components/sections/how-it-works-section"
+import { FeaturesSection } from "@/components/sections/features-section"
+import { TeamSection } from "@/components/sections/team-section"
+import { TestimonialsSection } from "@/components/sections/testimonials-section"
+import { CTASection } from "@/components/sections/cta-section"
+import { PricingSection } from "@/components/sections/pricing-section"
+import { FAQSection } from "@/components/sections/faq-section"
 
-import Navbar from "@/components/navbar"
-import Hero from "@/components/hero"
-import Features from "@/components/features"
-import CTA from "@/components/cta"
-import Footer from "@/components/footer"
-
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="relative min-h-screen">
-      {/* Background gradients */}
-      <div className="pointer-events-none fixed inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
-        <div className="absolute right-0 top-0 h-[500px] w-[500px] bg-blue-500/10 blur-[100px]" />
-        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] bg-purple-500/10 blur-[100px]" />
-      </div>
-
-      <div className="relative z-10">
-        <Navbar />
-        <Hero />
-        <Features />
-        <CTA />
-        <Footer />
-      </div>
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        <HeroSection />
+        <HowItWorksSection />
+        <FeaturesSection />
+        <TeamSection />
+        <TestimonialsSection />
+        <PricingSection />
+        <FAQSection />
+        <CTASection />
+      </main>
+      <Footer />
     </div>
   )
 }
+
