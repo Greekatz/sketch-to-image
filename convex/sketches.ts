@@ -86,7 +86,7 @@ export const generate = internalAction({
     });
 
     try {
-      console.log("🟢 Sending request to Replicate API...");
+      console.log("Sending request to Replicate API...");
 
       // 🛠 Call Replicate API to start generation
       const prediction = await replicate.predictions.create({
@@ -100,9 +100,9 @@ export const generate = internalAction({
         },
       });
 
-      console.log("✅ Prediction Created:", prediction);
+      console.log("Prediction Created:", prediction);
 
-      // 🔄 Poll for the result until it's ready
+      // Poll for the result until it's ready
       let status = prediction.status;
       let outputUrls = null;
 
@@ -125,25 +125,25 @@ export const generate = internalAction({
       }
 
       if (!outputUrls || !Array.isArray(outputUrls) || outputUrls.length === 0) {
-        throw new Error("❌ No valid output URLs found in Replicate response.");
+        throw new Error(" No valid output URLs found in Replicate response.");
       }
 
-      const imageUrl = outputUrls[1]; // ✅ Extract the first valid URL
-      console.log("✅ Final Generated Image URL:", imageUrl);
+      const imageUrl = outputUrls[1]; //  Extract the first valid URL
+      console.log("Final Generated Image URL:", imageUrl);
 
-      // ✅ Save the final image URL to Convex
+      //  Save the final image URL to Convex
       await ctx.runMutation(internal.sketches.updateSketchResult, {
         sketchId,
         result: imageUrl,
       });
 
-      console.log("✅ Successfully updated sketch:", sketchId);
+      console.log("Successfully updated sketch:", sketchId);
     } catch (error: any) {
-      console.error("❌ Replicate API Error:", error);
+      console.error("Replicate API Error:", error);
 
       // Log Replicate's full error response if available
       if (error.response) {
-        console.error("❌ Replicate Response:", JSON.stringify(error.response.data, null, 2));
+        console.error("Replicate Response:", JSON.stringify(error.response.data, null, 2));
       }
 
       throw new Error(`Failed to process image: ${error.message}`);
