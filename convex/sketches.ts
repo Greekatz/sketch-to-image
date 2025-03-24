@@ -96,7 +96,7 @@ export const generate = internalAction({
           scale: 7,
           prompt,
           image_resolution: "512",
-          n_prompt: "cute"
+          n_prompt: "lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, blurry, deformed, realistic, photorealistic"
         },
       });
 
