@@ -1,10 +1,6 @@
-"use client"
+import { useState, useRef } from 'react';
 
-import type React from "react"
-
-import { useState, useRef } from "react"
-
-export function useImageUpload() {
+export const useImageUpload = () => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -36,6 +32,6 @@ export function useImageUpload() {
     fileInputRef,
     handleFileChange,
     triggerFileInput,
-    clearUploadedImage,
+    clearUploadedImage
   }
 }
