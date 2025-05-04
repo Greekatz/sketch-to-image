@@ -6,7 +6,7 @@ import { ConvexClientProvider } from "./ConvexClientProvider";
 import {
   ClerkProvider,
 } from "@clerk/nextjs";
-
+import { CustomThemeProvider } from "../components/sections/theme-context"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +25,9 @@ export default function RootLayout({
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
           <ConvexClientProvider>
-
+            <CustomThemeProvider>{children}</CustomThemeProvider>
             {/* Main Content */}
-            <main>{children}</main>
+            {/* <main>{children}</main> */}
           </ConvexClientProvider>
         </ClerkProvider>
       </body>
