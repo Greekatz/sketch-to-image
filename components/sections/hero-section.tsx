@@ -1,9 +1,14 @@
+"use client"
+
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Sparkles } from "lucide-react"
 
 export function HeroSection() {
+  const router = useRouter()
+
   return (
     <section className="relative overflow-hidden py-20 md:py-32">
       <div className="container relative z-10">
@@ -19,7 +24,11 @@ export function HeroSection() {
             minutes, not hours.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button size="lg" className="gap-2">
+            <Button 
+              size="lg" 
+              className="gap-2" 
+              onClick={() => router.push("/sketches")}
+            >
               <Sparkles className="h-4 w-4" />
               Start designing for free
             </Button>
@@ -45,4 +54,3 @@ export function HeroSection() {
     </section>
   )
 }
-
