@@ -12,8 +12,7 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Sparkles, Trash2, Upload, Pencil } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useImageUpload } from "../hooks/use-image-upload"
-import { useToast } from "@/hooks/use-toast"
+import { useImageUpload } from "@/hooks/useImageUpload"
 
 type FormValues = {
   prompt: string
@@ -25,9 +24,14 @@ export function SketchForm() {
   const [errorMessage, setErrorMessage] = useState("")
   const [inputMethod, setInputMethod] = useState<"draw" | "upload">("draw")
   const canvasRef = useRef<ReactSketchCanvasRef>(null)
-  const { toast } = useToast()
 
-  const { uploadedImage, fileInputRef, handleFileChange, triggerFileInput, clearUploadedImage } = useImageUpload()
+  const {
+    uploadedImage,
+    fileInputRef,
+    handleFileChange,
+    triggerFileInput,
+    clearUploadedImage,
+  } = useImageUpload()
 
   const {
     register,
@@ -62,23 +66,16 @@ export function SketchForm() {
 
       await saveSketchMutation({ ...formData, image })
 
-      // Reset form after successful submission
       reset()
       canvasRef.current?.clearCanvas()
       clearUploadedImage()
 
-      toast({
-        title: "Sketch saved!",
-        description: "Your sketch has been successfully generated and saved.",
-      })
+      // Removed toast on success
     } catch (error) {
       console.error("Error submitting form:", error)
       setErrorMessage("Failed to save the sketch. Please try again.")
-      toast({
-        title: "Error",
-        description: "Failed to generate the sketch. Please try again.",
-        variant: "destructive",
-      })
+
+      // Removed toast on error
     } finally {
       setIsSubmitting(false)
     }
@@ -136,7 +133,7 @@ export function SketchForm() {
 }
 
 type DrawingCanvasProps = {
-  canvasRef: React.RefObject<ReactSketchCanvasRef>
+  canvasRef: React.RefObject<ReactSketchCanvasRef | null>
 }
 
 function DrawingCanvas({ canvasRef }: DrawingCanvasProps) {
@@ -172,7 +169,7 @@ function DrawingCanvas({ canvasRef }: DrawingCanvasProps) {
 
 type UploadPanelProps = {
   uploadedImage: string | null
-  fileInputRef: React.RefObject<HTMLInputElement>
+  fileInputRef: React.RefObject<HTMLInputElement | null>
   handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   triggerFileInput: () => void
   clearUploadedImage: () => void
