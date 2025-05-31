@@ -4,13 +4,14 @@ import type React from "react"
 import { useEffect, useState } from "react"
 import { Sparkles, Trash2, Download } from "lucide-react"
 import { useMutation } from "convex/react"
+import type { Id } from "@/convex/_generated/dataModel"
 import { api } from "@/convex/_generated/api"
 import { Button } from "@/components/ui/button"
 
 type Sketch = {
   _id: string
   _creationTime: number
-  result: string
+  result?: string
   prompt: string
 }
 
@@ -74,7 +75,7 @@ function SketchCard({ sketch }: SketchCardProps) {
   const handleDelete = async (e: React.MouseEvent) => {
     e.stopPropagation()
     try {
-      await deleteSketchMutation({ id: sketch._id })
+      await deleteSketchMutation({ id: sketch._id as Id<"sketches"> })
     } catch (error) {
       console.error("Failed to delete sketch:", error)
     }
@@ -91,6 +92,12 @@ function SketchCard({ sketch }: SketchCardProps) {
         .substring(0, 30)
 
       const filename = `sketch_${safePrompt}_${Date.now()}.jpg`
+
+      // If sketch.result is undefined, do nothing
+      if (!sketch.result) {
+        console.error("No result to download for this sketch.")
+        return
+      }
 
       // If it's a data URL, download directly
       if (sketch.result.startsWith("data:")) {

@@ -61,7 +61,11 @@ export default function SketchesPage() {
 
   // Sorting sketches by creation time
   const sortedSketches = (sketchesQuery ?? [])
-    .sort((a, b) => b._creationTime - a._creationTime)
+  .sort((a, b) => b._creationTime - a._creationTime)
+  .map(sketch => ({
+    ...sketch,
+    _id: sketch._id.toString(), // Convert Convex Id to string
+  }));
 
   // Form Submission Handler
   const onSubmit = async (formData: SketchFormData) => {
