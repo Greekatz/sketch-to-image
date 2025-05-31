@@ -48,6 +48,13 @@ export const getSketch = query({
   },
 });
 
+export const deleteSketch = mutation({
+  args: { id: v.id("sketches") },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
+  },
+});
+
 
 export const updateSketchResult = internalMutation({
   args: { sketchId: v.id("sketches"), result: v.string() },
