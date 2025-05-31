@@ -17,7 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 // Imported components and hooks
 import { useImageUpload } from "@/hooks/useImageUpload"
 import { ImageUploadSection } from "@/components/sections/image-upload-section"
-import { RecentSketches } from "@/components/RecentSketches"
+import { SketchGallery } from "@/components/ui/sketch-gallery"
 
 // Constants
 const INPUT_METHODS = {
@@ -212,8 +212,7 @@ export default function SketchesPage() {
 
           {/* Recent Sketches Display */}
           <div className="md:col-span-2">
-            <h2 className="text-xl font-bold mb-4">Recent Sketches</h2>
-            <RecentSketches sketches={sortedSketches} />
+            <SketchGallery sketches={sortedSketches} />
           </div>
         </div>
       </main>

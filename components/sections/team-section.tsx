@@ -13,25 +13,25 @@ export function TeamSection() {
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <TeamMember
-            name="Alex Morgan"
-            role="Founder & CEO"
-            image="/placeholder.svg?height=400&width=400"
-            twitter="alexmorgan"
-            linkedin="alexmorgan"
+            name="Nguyen Thanh Hung"
+            role="Project Manager & Backend Developer"
+            image="https://raw.githubusercontent.com/tabler/tabler-icons/v2.47.0/icons/info-circle.svg"
+            twitter="hungnguyenarbeit1912"
+            linkedin="hungnguyenarbeit1912"
           />
           <TeamMember
-            name="Jamie Chen"
-            role="Chief Design Officer"
-            image="/placeholder.svg?height=400&width=400"
-            twitter="jamiechen"
-            linkedin="jamiechen"
+            name="Nguyen Trang Thien Huong"
+            role="Front-end Developer & QC Tester"
+            image="https://raw.githubusercontent.com/tabler/tabler-icons/v2.47.0/icons/info-circle.svg"
+            twitter="nekonya"
+            linkedin="nekoya"
           />
           <TeamMember
-            name="Sam Wilson"
-            role="CTO"
-            image="/placeholder.svg?height=400&width=400"
-            twitter="samwilson"
-            linkedin="samwilson"
+            name="Phan Duc ri"
+            role="Front-end Developer & QC Tester"
+            image="https://raw.githubusercontent.com/tabler/tabler-icons/v2.47.0/icons/info-circle.svg"
+            twitter="bofan"
+            linkedin="bofan"
           />
         </div>
       </div>
