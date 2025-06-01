@@ -37,12 +37,6 @@ export function Navbar() {
           <Button variant="outline" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="gap-2">
             {theme === "dark" ? "Light Mode" : "Dark Mode"}
           </Button>
-          <Button variant="ghost" asChild>
-            <Link href="/login">Log in</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/signup">Sign up</Link>
-          </Button>
         </div>
         <div className="flex items-center gap-2 md:hidden">
           <Button variant="outline" size="sm" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>

@@ -41,7 +41,7 @@ export function HeroSection() {
       <div className="mt-16 flex justify-center">
         <div className="relative w-full max-w-5xl rounded-xl border bg-background/50 shadow-xl">
           <Image
-            src="/placeholder.svg?height=720&width=1280"
+            src="/poster.png?height=720&width=1280"
             width={1280}
             height={720}
             alt="Sketch dashboard preview"
